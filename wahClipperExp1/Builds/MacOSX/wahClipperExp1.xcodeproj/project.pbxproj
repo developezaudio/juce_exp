@@ -35,6 +35,7 @@
 		360D98B484B4E4C1FE861D39 /* include_juce_audio_plugin_client_VST_utils.mm */ = {isa = PBXBuildFile; fileRef = 0419599B834900D63FC1B267; };
 		36AA10FA0928FB18DE23DA37 /* Carbon.framework */ = {isa = PBXBuildFile; fileRef = 986418EBC326A4D3E43B0E0E; };
 		3872215359C8E9434F65647D /* CoreMIDI.framework */ = {isa = PBXBuildFile; fileRef = BFD914EB8717638C56ED3BE2; };
+		3951D5AD434C25BDBDA6F7BD /* DA_biquad.cpp */ = {isa = PBXBuildFile; fileRef = 0249EE598650E99482CE03F8; };
 		3CFC544A180F29D36D5F9020 /* Standalone Plugin */ = {isa = PBXBuildFile; fileRef = A21D1FB91480ED4B3E8AF63B; };
 		3D0B245E74E98513BCB7259C /* include_juce_audio_formats.mm */ = {isa = PBXBuildFile; fileRef = 8DE97A53403D4E86D3D95289; };
 		46317618DFF057A60EE5D95D /* AudioToolbox.framework */ = {isa = PBXBuildFile; fileRef = 4B82A98529CC265B7BE585A7; };
@@ -67,6 +68,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0249EE598650E99482CE03F8 /* DA_biquad.cpp */ /* DA_biquad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = DA_biquad.cpp; path = ../../Source/DA_biquad.cpp; sourceTree = SOURCE_ROOT; };
 		0419599B834900D63FC1B267 /* include_juce_audio_plugin_client_VST_utils.mm */ /* include_juce_audio_plugin_client_VST_utils.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_plugin_client_VST_utils.mm; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm; sourceTree = SOURCE_ROOT; };
 		049B16401B761B8A2836EA97 /* juce_core */ /* juce_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_core; path = /Applications/JUCE/modules/juce_core; sourceTree = "<absolute>"; };
 		0580AA5166C6534ACA24243E /* include_juce_audio_plugin_client_utils.cpp */ /* include_juce_audio_plugin_client_utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_plugin_client_utils.cpp; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp; sourceTree = SOURCE_ROOT; };
@@ -80,6 +82,7 @@
 		2340F16E557EEF47C5F6AF8D /* juce_audio_plugin_client */ /* juce_audio_plugin_client */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_plugin_client; path = /Applications/JUCE/modules/juce_audio_plugin_client; sourceTree = "<absolute>"; };
 		2A387FB0EB49E54C1AB9D7D3 /* Wahclipper.cpp */ /* Wahclipper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Wahclipper.cpp; path = ../../Source/Wahclipper.cpp; sourceTree = SOURCE_ROOT; };
 		2EFF60AB2AE465A4A2491424 /* juce_audio_basics */ /* juce_audio_basics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_basics; path = /Applications/JUCE/modules/juce_audio_basics; sourceTree = "<absolute>"; };
+		2F28EEA711CA65535F3D718E /* DA_biquad.h */ /* DA_biquad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DA_biquad.h; path = ../../Source/DA_biquad.h; sourceTree = SOURCE_ROOT; };
 		322E451698AB5ECF9218E0FB /* juce_gui_extra */ /* juce_gui_extra */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_extra; path = /Applications/JUCE/modules/juce_gui_extra; sourceTree = "<absolute>"; };
 		34943B3EC9B80623D822D977 /* include_juce_audio_processors.mm */ /* include_juce_audio_processors.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_processors.mm; path = ../../JuceLibraryCode/include_juce_audio_processors.mm; sourceTree = SOURCE_ROOT; };
 		38385A6ADA843D298ECE7E58 /* include_juce_graphics.mm */ /* include_juce_graphics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_graphics.mm; path = ../../JuceLibraryCode/include_juce_graphics.mm; sourceTree = SOURCE_ROOT; };
@@ -318,6 +321,8 @@
 		FE4720D87CF41380F5D4963B /* mdsp */ = {
 			isa = PBXGroup;
 			children = (
+				0249EE598650E99482CE03F8,
+				2F28EEA711CA65535F3D718E,
 				2A387FB0EB49E54C1AB9D7D3,
 				08C7E2DC559BF7AA36977680,
 			);
@@ -581,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3951D5AD434C25BDBDA6F7BD,
 				49460236766D7D83F3E53AED,
 				307A45566FA39D050B2327C6,
 				A64DED7952FE3C864C086F15,
