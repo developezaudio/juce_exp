@@ -19,9 +19,15 @@ WahClipperExp1AudioProcessor::WahClipperExp1AudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), mValueTreeState(*this, nullptr, "Parameters", mCreateParams())
 #endif
 {
+//    addParameter( mCutoff = new juce::AudioParameterFloat{
+//                                            "cutoff",
+//                                            "CUTOFF",
+//                                            400.f,
+//                                            50.f,
+//                                            15000.f});
 }
 
 WahClipperExp1AudioProcessor::~WahClipperExp1AudioProcessor()
@@ -100,6 +106,10 @@ void WahClipperExp1AudioProcessor::prepareToPlay (double sampleRate, int samples
     spec.sampleRate = sampleRate;
     spec.numChannels = getTotalNumInputChannels();
     
+    osc.prepare(spec);
+    mFilter.prepare(spec);
+    mGain.prepare(spec);
+    
     reset();
 }
 
@@ -164,12 +174,19 @@ void WahClipperExp1AudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
 //        // ..do something to the data...
 //    }
 //
-    mFilter.setCutoffFrequency(150.0f);
+    auto cutoff = mValueTreeState.getRawParameterValue("CUTOFF");
+    cutoff->load();
+    mFilter.setCutoffFrequency(cutoff->load());
+    osc.setFrequency(330.f);
+    mGain.setGainDecibels(-15);
     
     auto audioBlock = juce::dsp::AudioBlock<float>(buffer);
     auto context = juce::dsp::ProcessContextReplacing<float>(audioBlock);
     
-    mFilter.process(context);
+    //mFilter.process(context);
+    //osc.process(context);
+    mGain.process(context);
+
 }
 
 //==============================================================================
@@ -202,6 +219,13 @@ void WahClipperExp1AudioProcessor::setStateInformation (const void* data, int si
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new WahClipperExp1AudioProcessor();
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout WahClipperExp1AudioProcessor::mCreateParams()
+{
+    std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("cutoff", "CUTOFF", 400.f, 50.f, 15000.f));
+    return {params.begin(), params.end()};
 }
 
 void WahClipperExp1AudioProcessor::reset()

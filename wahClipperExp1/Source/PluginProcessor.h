@@ -52,6 +52,8 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    
+    juce::AudioProcessorValueTreeState mValueTreeState;
 
 private:
     enum class FilterType {
@@ -61,8 +63,15 @@ private:
     };
     void reset() override;
     void setType();
+    ////// Param Set up //////
+    juce::AudioParameterFloat* mCutoff;
+    juce::AudioProcessorValueTreeState::ParameterLayout mCreateParams();
     
     juce::dsp::StateVariableTPTFilter<float> mFilter;
+    
+    juce::dsp::Oscillator<float> osc {[](float x){return std::sin(x);}};
+    
+    juce::dsp::Gain<float> mGain;
     
     FilterType mFilterType {FilterType::LowPass};
     //==============================================================================
