@@ -3,6 +3,10 @@
 <JUCERPROJECT id="rdQRKT" name="wahClipperExp1" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="hTeySI" name="wahClipperExp1">
+    <GROUP id="{7C253603-2F73-8C15-C5A6-9BDCB6EE65A0}" name="mdsp">
+      <FILE id="U7f3Df" name="Wahclipper.cpp" compile="1" resource="0" file="Source/Wahclipper.cpp"/>
+      <FILE id="TyMBBP" name="Wahclipper.h" compile="0" resource="0" file="Source/Wahclipper.h"/>
+    </GROUP>
     <GROUP id="{8751D3A6-7B1D-C17D-B8DF-6FB5C03E0923}" name="Source">
       <FILE id="aGaXC3" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
